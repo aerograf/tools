@@ -247,6 +247,6 @@ EOF;
         break;
 }
 //xoops_cp_header();
-$css = '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/tools/templates/style.css" />';
+$css = '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/tools/assets/css/style.css" />';
 $xoopsTpl->assign('css', $css);
 include __DIR__ . '/footer.php';
