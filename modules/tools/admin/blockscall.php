@@ -15,13 +15,10 @@
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
-
-
 include __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main']   = 'tools_admin_blockscall.tpl';
 xoops_cp_header();
 //loadModuleAdminMenu(2, '');
-
 $op                = isset($_REQUEST['op']) ? $_REQUEST['op'] : 'list';
 /** @var XoopsPersistableObjectHandler $blocksCallHandler */
 $blocksCallHandler = xoops_getModuleHandler('blockscall');
@@ -77,7 +74,6 @@ switch ($op) {
         $generator_list[-1] = _AM_TOOLS_BC_ALLTYPES;
         ksort($generator_list);
         $selgen = isset($_GET['selgen']) ? (int)$_GET['selgen'] : -1;
-
         //get blocks
         $criteria = new CriteriaCompo(new Criteria('mid', 0, '!='));
         if ($selgen != -1) {
@@ -91,20 +87,16 @@ switch ($op) {
             $blocks_array[$k]['mname'] = $generator_list[$v['mid']];
         }
         unset($criteria);
-
         $xoopsTpl->assign('selgen', $selgen);
         $xoopsTpl->assign('modules', $generator_list);
         $xoopsTpl->assign('blocks', $blocks_array);
         $GLOBALS['xoopsOption']['template_main']= 'tools_admin_blockscall_new.tpl';
 //        xoops_cp_header();
         break;
-
     case 'create':
-
         $blocksHandler = xoops_getModuleHandler('xoopsblock');
         $block_obj     = $blocksHandler->get($_GET['bid']);
         $o_block       = $block_obj->getValues();
-
         if ($o_block['template'] != '') {
             /** @var \XoopsTplfileHandler $tplfileHandler */
             $tplfileHandler = xoops_getHandler('tplfile');
@@ -118,7 +110,6 @@ switch ($op) {
                 }
             }
         }
-
         $blocksCallObj = $blocksCallHandler->create();
         $blocksCallObj->setVar('bid', $o_block['bid']);
         $blocksCallObj->setVar('mid', $o_block['mid']);
@@ -137,15 +128,11 @@ switch ($op) {
         if ($blocksCallHandler->insert($blocksCallObj)) {
             redirect_header("blockscall.php?op=edit&amp;bid={$blocksCallObj->getVar('bid')}", 3, sprintf(_AM_TOOLS_BC_CREATESUCCESS, $blocksCallObj->getVar('name')));
         }
-
         break;
-
     case 'edit':
-
         $blocksCallObj          = $blocksCallHandler->get($_GET['bid']);
         $block_data              = $blocksCallObj->getValues(null, 'n');
         $block_data['edit_form'] = $blocksCallObj->getOptions();
-
         $blockoption = !empty($block_data['options']) ? "options=\"{$block_data['options']}\"" : '';
         $cachetime   = $block_data['bcachetime'] != 0 ? ' cachetime=' . $block_data['bcachetime'] : '';
         if ($cachetime) {
@@ -163,7 +150,6 @@ switch ($op) {
         } else {
             $cachemodel = '';
         }
-
         $xoblktpl = <<<EOF
 <{xoBlkTpl module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" {$blockoption}$cachetime$cachemodel}>
 {$block_data['tpl_content']}
@@ -172,16 +158,12 @@ EOF;
         $xoblk    = <<<EOF
 <{xoblk module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" $blockoption template="{$block_data['template']}"$cachetime $cachemodel}>
 EOF;
-
         include __DIR__ . '/../include/blockform.php';
-
         $xoopsTpl->assign('xoBlkTpl', $xoblktpl);
         $xoopsTpl->assign('xoblk', $xoblk);
-
         $GLOBALS['xoopsOption']['template_main']= 'tools_admin_blockscall_edit.tpl';
 //        xoops_cp_header();
         break;
-
     case 'save':
         $blocksCallObj = $blocksCallHandler->get($_REQUEST['bid']);
         if (isset($_REQUEST['save']) && $_REQUEST['save'] === 'blk') {
@@ -207,13 +189,11 @@ EOF;
         } else {
             exit();
         }
-
         $blocksCallObj->setVar('last_modified', time());
         if ($blocksCallHandler->insert($blocksCallObj)) {
             redirect_header("blockscall.php?op=edit&amp;bid={$blocksCallObj->getVar('bid')}", 3, sprintf(_AM_TOOLS_BC_SAVEDSUCCESS, $blocksCallObj->getVar('name')));
         }
         break;
-
     case 'edittpl':
         $blocksCallObj = $blocksCallHandler->get($_REQUEST['bid']);
         $block_data     = $blocksCallObj->getValues(null, 'n');
@@ -229,7 +209,6 @@ EOF;
         $form->addElement($button_tray);
         $form->display();
         break;
-
     case 'delete':
         $blocksCallObj = $blocksCallHandler->get($_REQUEST['bid']);
         if (isset($_REQUEST['ok']) && $_REQUEST['ok'] == 1) {
@@ -247,6 +226,6 @@ EOF;
         break;
 }
 //xoops_cp_header();
-$css = '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/tools/assets/css/style.css" />';
+$css = '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/tools/templates/style.css" />';
 $xoopsTpl->assign('css', $css);
 include __DIR__ . '/footer.php';
