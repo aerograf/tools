@@ -16,7 +16,7 @@
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 $modversion                = [];
 $modversion['name']        = _MI_TOOLS_NAME;

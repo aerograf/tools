@@ -17,17 +17,17 @@
  */
 
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-$form = new XoopsForm(_EDIT . _AM_TOOLS_BC_BLOCK, 'form', 'blockscall.php', 'post', true);
-$form->addElement(new XoopsFormLabel(_AM_TOOLS_BC_NAME, $block_data['name']));
-$form->addElement(new XoopsFormText(_AM_TOOLS_BC_DESCRIPTION, 'desc', 60, 255, $block_data['desciption']));
+$form = new \XoopsForm(_EDIT . _AM_TOOLS_BC_BLOCK, 'form', 'blockscall.php', 'post', true);
+$form->addElement(new \XoopsFormLabel(_AM_TOOLS_BC_NAME, $block_data['name']));
+$form->addElement(new \XoopsFormText(_AM_TOOLS_BC_DESCRIPTION, 'desc', 60, 255, $block_data['desciption']));
 if ('' != $block_data['template']) {
-    $form->addElement(new XoopsFormLabel(_AM_TOOLS_BC_CONTENT, '<a href="blockscall.php?op=edittpl&amp;bid=' . $block_data['bid'] . '">' . _AM_TOOLS_BC_EDITTPL . '</a>'));
+    $form->addElement(new \XoopsFormLabel(_AM_TOOLS_BC_CONTENT, '<a href="blockscall.php?op=edittpl&amp;bid=' . $block_data['bid'] . '">' . _AM_TOOLS_BC_EDITTPL . '</a>'));
 }
 if (false !== $block_data['edit_form']) {
-    $form->addElement(new XoopsFormLabel(_AM_TOOLS_BC_OPTIONS, $block_data['edit_form']));
+    $form->addElement(new \XoopsFormLabel(_AM_TOOLS_BC_OPTIONS, $block_data['edit_form']));
 }
 
-$cache_select = new XoopsFormSelect(_AM_TOOLS_BC_BCACHETIME, 'bcachetime', $block_data['bcachetime']);
+$cache_select = new \XoopsFormSelect(_AM_TOOLS_BC_BCACHETIME, 'bcachetime', $block_data['bcachetime']);
 $cache_select->addOptionArray([
                                   '0'       => _NOCACHE,
                                   '30'      => sprintf(_SECONDS, 30),
@@ -43,7 +43,7 @@ $cache_select->addOptionArray([
                               ]);
 $form->addElement($cache_select);
 
-$cachemodel_select = new XoopsFormSelect(_AM_TOOLS_BC_BCACHEMODEL, 'bcachemodel', $block_data['bcachemodel']);
+$cachemodel_select = new \XoopsFormSelect(_AM_TOOLS_BC_BCACHEMODEL, 'bcachemodel', $block_data['bcachemodel']);
 $cachemodel_select->addOptionArray([
                                        '0' => _AM_TOOLS_BC_GLOBAL,
                                        '1' => _AM_TOOLS_BC_GROUP,
@@ -51,11 +51,11 @@ $cachemodel_select->addOptionArray([
                                    ]);
 $form->addElement($cachemodel_select);
 
-$form->addElement(new XoopsFormHidden('bid', $block_data['bid']));
-$form->addElement(new XoopsFormHidden('op', 'save'));
-$form->addElement(new XoopsFormHidden('save', 'blk'));
-$button_tray = new XoopsFormElementTray('', '&nbsp;');
-$button_tray->addElement(new XoopsFormButton('', 'submitblock', _SUBMIT, 'submit'));
+$form->addElement(new \XoopsFormHidden('bid', $block_data['bid']));
+$form->addElement(new \XoopsFormHidden('op', 'save'));
+$form->addElement(new \XoopsFormHidden('save', 'blk'));
+$button_tray = new \XoopsFormElementTray('', '&nbsp;');
+$button_tray->addElement(new \XoopsFormButton('', 'submitblock', _SUBMIT, 'submit'));
 $form->addElement($button_tray);
 
 $form->assign($xoopsTpl);

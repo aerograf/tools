@@ -25,7 +25,7 @@
         <th><{$smarty.const._AM_TOOLS_BC_MODULE}></th>
         <th><{$smarty.const._AM_TOOLS_BC_ACTION}></th>
     </tr>
-    <{foreachq item=block from=$blocks}>
+    <{foreach item=block from=$blocks}>
     <tr class="<{cycle values='odd, even'}>">
         <td><{$block.name}></td>
         <td><{$block.title}></td>

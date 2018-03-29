@@ -23,7 +23,7 @@
     <tr>
         <th colspan="2"><{$form.title}></th>
     </tr>
-    <{foreachq item=item from=$form.elements}>
+    <{foreach item=item from=$form.elements}>
 
     <{if !$item.hidden}>
     <tr>

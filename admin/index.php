@@ -26,19 +26,19 @@ switch ($op) {
     default:
     case 'index':
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form = new XoopsThemeForm(_AM_TOOLS_INDEX, 'updatecache', 'index.php', 'post', true);
-        $form->addElement(new XoopsFormLabel(_AM_TOOLS_TIP, _AM_TOOLS_TIPS));
+        $form = new \XoopsThemeForm(_AM_TOOLS_INDEX, 'updatecache', 'index.php', 'post', true);
+        $form->addElement(new \XoopsFormLabel(_AM_TOOLS_TIP, _AM_TOOLS_TIPS));
         $checkbox_options = [
             'updatexoopscache'    => _AM_TOOLS_UPDATEXOOPSCACHE,
             'updatesmartycache'   => _AM_TOOLS_UPDATESMARTYCACHE,
             'updatesmartycompile' => _AM_TOOLS_UPDATESMARTYCOMPILE
         ];
-        $checkbox         = new XoopsFormCheckBox(_AM_TOOLS_OPTIONS, 'options', array_keys($checkbox_options));
+        $checkbox         = new \XoopsFormCheckBox(_AM_TOOLS_OPTIONS, 'options', array_keys($checkbox_options));
         $checkbox->addOptionArray($checkbox_options);
         $form->addElement($checkbox);
-        $form->addElement(new XoopsFormHidden('op', 'updatecache'));
-        $form->addElement(new XoopsFormHidden('step', '1'));
-        $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+        $form->addElement(new \XoopsFormHidden('op', 'updatecache'));
+        $form->addElement(new \XoopsFormHidden('step', '1'));
+        $form->addElement(new \XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
         $form->display();
         break;
     case 'updatecache':

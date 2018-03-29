@@ -27,7 +27,7 @@ switch ($op) {
     case 'list':
         /** @var XoopsModuleHandler $moduleHandler */
         $moduleHandler   = xoops_getHandler('module');
-        $criteria        = new Criteria('isactive', 1);
+        $criteria        = new \Criteria('isactive', 1);
         $generator_list  = $moduleHandler->getList($criteria);
         $fields          = [
             'bid',
@@ -67,7 +67,7 @@ switch ($op) {
         // Modules for blocks to be visible in
         /** @var XoopsModuleHandler $moduleHandler */
         $moduleHandler  = xoops_getHandler('module');
-        $criteria       = new Criteria('isactive', 1);
+        $criteria       = new \Criteria('isactive', 1);
         $generator_list = $moduleHandler->getList($criteria);
         unset($criteria);
         $generator_list[-1] = _AM_TOOLS_BC_ALLTYPES;
@@ -75,9 +75,9 @@ switch ($op) {
         $selgen = isset($_GET['selgen']) ? (int)$_GET['selgen'] : -1;
 
         //get blocks
-        $criteria = new CriteriaCompo(new Criteria('mid', 0, '!='));
-        if ($selgen != -1) {
-            $criteria->add(new Criteria('mid', $selgen));
+        $criteria = new \CriteriaCompo(new \Criteria('mid', 0, '!='));
+        if (-1 != $selgen) {
+            $criteria->add(new \Criteria('mid', $selgen));
         }
         $fields        = ['bid', 'mid', 'name', 'title'];
         $blocksHandler = xoops_getModuleHandler('xoopsblock');
@@ -211,14 +211,14 @@ EOF;
         $blockscall_obj = $blockscallHandler->get($_REQUEST['bid']);
         $block_data     = $blockscall_obj->getValues(null, 'n');
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form = new XoopsThemeForm(_AM_TOOLS_BC_EDITTPL, 'form', 'blockscall.php', 'post', true);
-        $form->addElement(new XoopsFormLabel(_AM_TOOLS_BC_BLOCK, $block_data['name']));
-        $form->addElement(new XoopsFormTextArea(_AM_TOOLS_BC_TPLSOURCES, 'tpl_content', $block_data['tpl_content'], 10, 80));
-        $form->addElement(new XoopsFormHidden('bid', $block_data['bid']));
-        $form->addElement(new XoopsFormHidden('op', 'save'));
-        $form->addElement(new XoopsFormHidden('save', 'tpl'));
-        $button_tray = new XoopsFormElementTray('', '&nbsp;');
-        $button_tray->addElement(new XoopsFormButton('', 'submitblock', _SUBMIT, 'submit'));
+        $form = new \XoopsThemeForm(_AM_TOOLS_BC_EDITTPL, 'form', 'blockscall.php', 'post', true);
+        $form->addElement(new \XoopsFormLabel(_AM_TOOLS_BC_BLOCK, $block_data['name']));
+        $form->addElement(new \XoopsFormTextArea(_AM_TOOLS_BC_TPLSOURCES, 'tpl_content', $block_data['tpl_content'], 10, 80));
+        $form->addElement(new \XoopsFormHidden('bid', $block_data['bid']));
+        $form->addElement(new \XoopsFormHidden('op', 'save'));
+        $form->addElement(new \XoopsFormHidden('save', 'tpl'));
+        $button_tray = new \XoopsFormElementTray('', '&nbsp;');
+        $button_tray->addElement(new \XoopsFormButton('', 'submitblock', _SUBMIT, 'submit'));
         $form->addElement($button_tray);
         $form->display();
         break;
