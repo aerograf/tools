@@ -72,7 +72,7 @@ switch ($op) {
         unset($criteria);
         $generator_list[-1] = _AM_TOOLS_BC_ALLTYPES;
         ksort($generator_list);
-        $selgen = isset($_GET['selgen']) ? (int)$_GET['selgen'] : -1;
+        $selgen = \Xmf\Request::getInt('selgen', -1, 'GET');
 
         //get blocks
         $criteria = new \CriteriaCompo(new \Criteria('mid', 0, '!='));
