@@ -166,7 +166,7 @@ EOF;
 <{xoBlk module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" $blockoption template="{$block_data['template']}"$cachetime$cachemodel}>
 EOF;
 
-        include __DIR__ . '/../include/blockform.php';
+        include  dirname(__DIR__) . '/include/blockform.php';
 
         $xoopsTpl->assign('xoblktpl', $xoblktpl);
         $xoopsTpl->assign('xoblk', $xoblk);

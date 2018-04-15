@@ -17,11 +17,11 @@
  * @author     XOOPS Development Team
  */
 
-$moduleDirName      = basename(dirname(__DIR__));
-$moduleDirNameUpper = strtoupper($moduleDirName);
 
 function getConfig()
 {
+    $moduleDirName      = basename(dirname(__DIR__));
+    $moduleDirNameUpper = strtoupper($moduleDirName);
     return (object)[
         'name'           => strtoupper($moduleDirName) . ' Module Configurator',
         'paths'          => [
@@ -64,8 +64,8 @@ function getConfig()
             '/class/registry.php',
             '/class/utilities.php',
             '/class/util.php',
-            '/include/constants.php',
-            '/include/functions.php',
+            // '/include/constants.php',
+            // '/include/functions.php',
             '/ajaxrating.txt',
         ],
         'oldFolders'      => [

@@ -17,7 +17,7 @@
  */
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-class ToolsBlocksCall extends XoopsObject
+class ToolsBlocksCall extends \XoopsObject
 {
     public function __construct()
     {
@@ -69,7 +69,7 @@ class ToolsBlocksCall extends XoopsObject
     }
 }
 
-class ToolsBlocksCallHandler extends XoopsPersistableObjectHandler
+class ToolsBlocksCallHandler extends \XoopsPersistableObjectHandler
 {
     public function __construct($db)
     {
