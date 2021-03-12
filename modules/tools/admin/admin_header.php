@@ -1,4 +1,5 @@
 <?php
+
 /**
  * tools Module for XOOPS
  *
@@ -9,27 +10,43 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       XOOPS Project (http://xoops.org)
+ * @copyright       XOOPS Project (https://xoops.org)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         tools
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
 
-require_once __DIR__ . '/../../../include/cp_header.php';
+use Xmf\Module\Admin;
+use XoopsModules\Tools\{
+    Helper
+};
+
+require  dirname(__DIR__) . '/preloads/autoloader.php';
+
+require_once dirname(__DIR__, 3) . '/include/cp_header.php';
+require  dirname(__DIR__) . '/include/common.php';
+
+$moduleDirName = basename(dirname(__DIR__));
+
+/** @var Helper $helper */
+$helper = Helper::getInstance();
+
+/** @var Admin $adminObject */
+$adminObject = Admin::getInstance();
+
+// Load language files
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
+$helper->loadLanguage('common');
 
 if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
     require_once XOOPS_ROOT_PATH . '/class/template.php';
-    $xoopsTpl = new XoopsTpl();
+    $xoopsTpl = new \XoopsTpl();
 }
 
-if (!@ require_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php'):
+if (!@require XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php'):
 
-    /**
-     * @param        $currentoption
-     * @param string $breadcrumb
-     * @return bool
-     */
     function loadModuleAdminMenu($currentoption, $breadcrumb = '')
     {
         if (!$adminObject = $GLOBALS['xoopsModule']->getAdminMenu()) {
@@ -81,7 +98,7 @@ if (!@ require_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php'):
         $adminMenu_text .= '
      </ul>
     </div>
-    <br style="clear:both;" />';
+    <br style="clear:both;">';
 
         echo $adminMenu_text;
     }
