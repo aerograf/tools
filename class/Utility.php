@@ -1,19 +1,16 @@
-<?php namespace XoopsModules\Tools;
+<?php
 
-use Xmf\Request;
+namespace XoopsModules\Tools;
+
 use XoopsModules\Tools;
 use XoopsModules\Tools\Common;
+
+//use XoopsModules\Tools\Constants;
 
 /**
  * Class Utility
  */
-class Utility
+class Utility extends Common\SysUtility
 {
-    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
-
-    use Common\ServerStats; // getServerStats Trait
-
-    use Common\FilesManagement; // Files Management Trait
-
     //--------------- Custom module methods -----------------------------
 }

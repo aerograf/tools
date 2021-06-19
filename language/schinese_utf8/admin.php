@@ -47,7 +47,6 @@ define('_AM_TOOLS_BC_DELETEDSUCCESS', '删除成功');
 define('_AM_TOOLS_BC_RUSUREDEL', '确定要删除 %s');
 define('_AM_TOOLS_BC_CREATESUCCESS', '区块 %s 添加成功');
 define('_AM_TOOLS_BC_NOBLOCKS', '没有可用区块');
-define('_AM_TOOLS_BC_NOBLOCKS', '没有可用区块');
 
 define('_AM_TOOLS_BC_EDITTPL', '编辑模板');
 define('_AM_TOOLS_BC_BLOCK', '区块');

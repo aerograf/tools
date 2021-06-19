@@ -1,4 +1,5 @@
 <?php
+
 /**
  * tools Module for XOOPS
  *
@@ -15,7 +16,6 @@
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
-
 define('_MI_TOOLS_NAME', '工具箱');
 define('_MI_TOOLS_DESC', '工具模块');
 //menu

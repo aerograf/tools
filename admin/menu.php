@@ -16,19 +16,50 @@
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
 
+use Xmf\Module\Admin;
 use XoopsModules\Tools;
 
-// require_once  dirname(__DIR__) . '/class/Helper.php';
-//require_once  dirname(__DIR__) . '/include/common.php';
+include dirname(__DIR__) . '/preloads/autoloader.php';
+
+/** @var Tools\Helper $helper */
+
+$moduleDirName      = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
 $helper = Tools\Helper::getInstance();
+$helper->loadLanguage('common');
+$helper->loadLanguage('feedback');
 
-$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
-$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
+$pathIcon32 = Admin::menuIconPath('');
+$pathModIcon32 = XOOPS_URL .   '/modules/' . $moduleDirName . '/assets/images/icons/32/';
+if (is_object($helper->getModule()) && false !== $helper->getModule()->getInfo('modicons32')) {
+    $pathModIcon32 = $helper->url($helper->getModule()->getInfo('modicons32'));
+}
 
-$adminmenu[1]['title'] = _MI_TOOLS_INDEX;
-$adminmenu[1]['link']  = 'admin/index.php';
-$adminmenu[2]['title'] = _MI_TOOLS_BLOCKS;
-$adminmenu[2]['link']  = 'admin/blockscall.php';
+$adminmenu[] = [
+    'title' => _MI_TOOLS_MENU_HOME,
+    'link'  => 'admin/index.php',
+    'icon'  => $pathIcon32 . '/home.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_TOOLS_INDEX,
+    'link'  => 'admin/main.php',
+    'icon'  => $pathIcon32 . '/update.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_TOOLS_BLOCKS,
+    'link'  => 'admin/blockscall.php',
+    'icon'  => $pathIcon32 . '/manage.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_TOOLS_MENU_ABOUT,
+    'link'  => 'admin/about.php',
+    'icon'  => $pathIcon32 . '/about.png',
+];
+
 //$adminmenu[3]['title'] = _FOO_MI_;
 //$adminmenu[3]['link'] = "admin/";
 //$adminmenu[4]['title'] = _FOO_MI_;

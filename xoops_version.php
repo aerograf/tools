@@ -1,4 +1,5 @@
 <?php
+
 /**
  * tools Module for XOOPS
  *
@@ -15,22 +16,39 @@
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+$moduleDirName      = basename(__DIR__);
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-$modversion                = [];
-$modversion['name']        = _MI_TOOLS_NAME;
-$modversion['version']     = '2.00 beta 1';
-$modversion['description'] = _MI_TOOLS_DESC;
-$modversion['image']       = 'assets/images/logoModule.png';
-$modversion['dirname']     = basename(__DIR__);
-$modversion['author']      = 'Susheng Yang <ezskyyoung@gmail.com>';
-$modversion['credits']     = 'XOOPS Development Team';
+$modversion                        = [];
+$modversion['version']             = '2.1';
+$modversion['module_status']       = 'Beta 1';
+$modversion['release_date']        = '2020/08/10';
+$modversion['name']                = _MI_TOOLS_NAME;
+$modversion['description']         = _MI_TOOLS_DESC;
+$modversion['image']               = 'assets/images/logoModule.png';
+$modversion['dirname']             = basename(__DIR__);
+$modversion['author']              = 'Susheng Yang <ezskyyoung@gmail.com>';
+$modversion['credits']             = 'XOOPS Development Team';
+$modversion['license']             = 'GNU GPL 2.0 or later';
+$modversion['license_url']         = 'www.gnu.org/licenses/gpl-2.0.html';
+$modversion['dirname']             = $moduleDirName;
+$modversion['modicons16']          = 'assets/images/icons/16';
+$modversion['modicons32']          = 'assets/images/icons/32';
+$modversion['image']               = 'assets/images/logoModule.png';
+$modversion['module_website_url']  = 'https://xoops.org';
+$modversion['module_website_name'] = 'XOOPS';
+$modversion['min_php']             = '7.0';
+$modversion['min_xoops']           = '2.5.10';
+$modversion['min_admin']           = '1.2';
+$modversion['min_db']              = ['mysql' => '5.5'];
+$modversion['system_menu']         = 1;
 
 // database tables, not applicable for this module
 $modversion['sqlfile']['mysql'] = 'sql/sql.sql';
 $modversion['tables']           = [
-    'tools_blocks'
+    $moduleDirName . '_' . 'blocks',
 ];
 
 // Admin things, not applicable for this module
@@ -45,23 +63,23 @@ $modversion['onInstall']   = '';
 $modversion['onUninstall'] = '';
 $modversion['onUpdate']    = '';
 
-/**
- * Templates
- */
-$modversion['templates']   = [];
-$modversion['templates'][] = [
-    'file'        => 'tools_admin_blockscall.tpl',
-    'description' => ''
-];
-$modversion['templates'][] = [
-    'file'        => 'tools_admin_blockscall_new.tpl',
-    'description' => ''
-];
-$modversion['templates'][] = [
-    'file'        => 'tools_admin_blockscall_edit.tpl',
-    'description' => ''
+// ------------------- Help files ------------------- //
+$modversion['help']        = 'page=help';
+$modversion['helpsection'] = [
+    ['name' => _MI_TOOLS_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_TOOLS_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_TOOLS_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_TOOLS_SUPPORT, 'link' => 'page=support'],
 ];
 
+// ------------------- Templates ------------------- //
+$modversion['templates'] = [
+    ['file' => 'tools_admin_blockscall.tpl', 'description' => '',],
+    ['file' => 'tools_admin_blockscall_new.tpl', 'description' => '',],
+    ['file' => 'tools_admin_blockscall_edit.tpl', 'description' => '',],
+];
+
+// ------------------- Blocks ------------------- //
 // Blocks, not applicable for this module
 $modversion['blocks'] = [];
 
@@ -72,7 +90,7 @@ $modversion['search']['file'] = '';
 $modversion['search']['func'] = '';
 
 // Configs, not applicable for this module
-//$modversion["config"] = array();
+//$modversion["config"] = [];
 
 // Comments, not applicable for this module
 $modversion['hasComments'] = 0;
