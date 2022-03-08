@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * tools Module for XOOPS
@@ -11,8 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
@@ -36,4 +35,3 @@ define('_MI_TOOLS_OVERVIEW', 'Overview');
 define('_MI_TOOLS_DISCLAIMER', 'Disclaimer');
 define('_MI_TOOLS_LICENSE', 'License');
 define('_MI_TOOLS_SUPPORT', 'Support');
-

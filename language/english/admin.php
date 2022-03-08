@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * tools Module for XOOPS
  *
@@ -10,8 +10,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
@@ -74,4 +73,3 @@ define('_AM_TOOLS_ERROR_COLUMN', 'Could not create column in database : %s');
 define('_AM_TOOLS_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
 define('_AM_TOOLS_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
 define('_AM_TOOLS_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');
-

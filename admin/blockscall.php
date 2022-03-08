@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * tools Module for XOOPS
@@ -11,16 +11,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
 
 use Xmf\Module\Admin;
 use Xmf\Request;
-/** @var Helper $helper */
 
+/** @var Helper $helper */
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
@@ -49,17 +48,17 @@ switch ($op) {
         ];
         $blockscall_data = $blocksCallHandler->getAll(null, $fields, false, false);
         $cachetime       = [
-            '0'       => _NOCACHE,
-            '30'      => sprintf(_SECONDS, 30),
-            '60'      => _MINUTE,
-            '300'     => sprintf(_MINUTES, 5),
-            '1800'    => sprintf(_MINUTES, 30),
-            '3600'    => _HOUR,
-            '18000'   => sprintf(_HOURS, 5),
-            '86400'   => _DAY,
-            '259200'  => sprintf(_DAYS, 3),
-            '604800'  => _WEEK,
-            '2592000' => _MONTH,
+            0       => _NOCACHE,
+            30      => sprintf(_SECONDS, 30),
+            60      => _MINUTE,
+            300     => sprintf(_MINUTES, 5),
+            1800    => sprintf(_MINUTES, 30),
+            3600    => _HOUR,
+            18000   => sprintf(_HOURS, 5),
+            86400   => _DAY,
+            259200  => sprintf(_DAYS, 3),
+            604800  => _WEEK,
+            2592000 => _MONTH,
         ];
         $cachemodel      = ['0' => _AM_TOOLS_BC_GLOBAL, '1' => _AM_TOOLS_BC_GROUP, '2' => _AM_TOOLS_BC_USER];
         foreach ($blockscall_data as $k => $v) {
@@ -101,7 +100,6 @@ switch ($op) {
         $template_main = 'tools_admin_blockscall_new.tpl';
         break;
     case 'create':
-
         $blocksHandler = $helper->getHandler('XoopsBlock');
         $block_obj     = $blocksHandler->get($_GET['bid']);
         $o_block       = $block_obj->getValues();
@@ -141,7 +139,6 @@ switch ($op) {
 
         break;
     case 'edit':
-
         $blocksCallObj           = $blocksCallHandler->get($_GET['bid']);
         $block_data              = $blocksCallObj->getValues(null, 'n');
         $block_data['edit_form'] = $blocksCallObj->getOptions();
@@ -165,15 +162,15 @@ switch ($op) {
         }
 
         $xoblktpl = <<<EOF
-<{xoBlkTpl module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" {$blockoption}$cachetime$cachemodel}>
-{$block_data['tpl_content']}
-<{/xoBlkTpl}>
-EOF;
+            <{xoBlkTpl module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" {$blockoption}$cachetime$cachemodel}>
+            {$block_data['tpl_content']}
+            <{/xoBlkTpl}>
+            EOF;
         $xoblk    = <<<EOF
-<{xoBlk module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" $blockoption template="{$block_data['template']}"$cachetime$cachemodel}>
-EOF;
+            <{xoBlk module="{$block_data['dirname']}" file="{$block_data['func_file']}" show_func="{$block_data['show_func']}" $blockoption template="{$block_data['template']}"$cachetime$cachemodel}>
+            EOF;
 
-        require dirname(__DIR__) . '/include/blockform.php';
+        require \dirname(__DIR__) . '/include/blockform.php';
 
         $xoopsTpl->assign('xoblktpl', $xoblktpl);
         $xoopsTpl->assign('xoblk', $xoblk);

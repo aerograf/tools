@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * tools Module for XOOPS
@@ -11,20 +11,19 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 $moduleDirName      = basename(__DIR__);
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $modversion                        = [];
-$modversion['version']             = '2.1';
+$modversion['version']             = '2.1.0';
 $modversion['module_status']       = 'Beta 1';
-$modversion['release_date']        = '2020/08/10';
+$modversion['release_date']        = '2021/06/19';
 $modversion['name']                = _MI_TOOLS_NAME;
 $modversion['description']         = _MI_TOOLS_DESC;
 $modversion['image']               = 'assets/images/logoModule.png';
@@ -74,9 +73,9 @@ $modversion['helpsection'] = [
 
 // ------------------- Templates ------------------- //
 $modversion['templates'] = [
-    ['file' => 'tools_admin_blockscall.tpl', 'description' => '',],
-    ['file' => 'tools_admin_blockscall_new.tpl', 'description' => '',],
-    ['file' => 'tools_admin_blockscall_edit.tpl', 'description' => '',],
+    ['file' => 'tools_admin_blockscall.tpl', 'description' => ''],
+    ['file' => 'tools_admin_blockscall_new.tpl', 'description' => ''],
+    ['file' => 'tools_admin_blockscall_edit.tpl', 'description' => ''],
 ];
 
 // ------------------- Blocks ------------------- //

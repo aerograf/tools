@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * tools Module for XOOPS
@@ -11,8 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
@@ -30,17 +29,17 @@ if (false !== $block_data['edit_form']) {
 $cache_select = new \XoopsFormSelect(_AM_TOOLS_BC_BCACHETIME, 'bcachetime', $block_data['bcachetime']);
 $cache_select->addOptionArray(
     [
-        '0'       => _NOCACHE,
-        '30'      => sprintf(_SECONDS, 30),
-        '60'      => _MINUTE,
-        '300'     => sprintf(_MINUTES, 5),
-        '1800'    => sprintf(_MINUTES, 30),
-        '3600'    => _HOUR,
-        '18000'   => sprintf(_HOURS, 5),
-        '86400'   => _DAY,
-        '259200'  => sprintf(_DAYS, 3),
-        '604800'  => _WEEK,
-        '2592000' => _MONTH,
+        0       => _NOCACHE,
+        30      => sprintf(_SECONDS, 30),
+        60      => _MINUTE,
+        300     => sprintf(_MINUTES, 5),
+        1800    => sprintf(_MINUTES, 30),
+        3600    => _HOUR,
+        18000   => sprintf(_HOURS, 5),
+        86400   => _DAY,
+        259200  => sprintf(_DAYS, 3),
+        604800  => _WEEK,
+        2592000 => _MONTH,
     ]
 );
 $form->addElement($cache_select);

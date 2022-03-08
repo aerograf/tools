@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * tools Module for XOOPS
@@ -11,8 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
@@ -20,7 +19,7 @@ if (isset($template_main)) {
     $xoopsTpl->display("db:{$template_main}");
 }
 
-$pathIcon32 = Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon32 = Xmf\Module\Admin::iconUrl('', '32');
 
 echo "<div class='adminfooter'>\n"
      . "  <div style='text-align: center;'>\n"
@@ -28,6 +27,5 @@ echo "<div class='adminfooter'>\n"
      . "  </div>\n"
      . '  ' . _AM_MODULEADMIN_ADMIN_FOOTER . "\n"
      . '</div>';
-
 
 xoops_cp_footer();

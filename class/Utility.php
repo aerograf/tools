@@ -1,9 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Tools;
-
-use XoopsModules\Tools;
-use XoopsModules\Tools\Common;
 
 //use XoopsModules\Tools\Constants;
 

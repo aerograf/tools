@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Tools\Common;
 
@@ -14,7 +14,7 @@ namespace XoopsModules\Tools\Common;
 
 /**
  * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      mamba <mambax7@gmail.com>
  */
 trait FilesManagement
@@ -23,8 +23,10 @@ trait FilesManagement
      * Function responsible for checking if a directory exists, we can also write in and create an index.html file
      *
      * @param string $folder The full path of the directory to check
+     *
+     * @throws \RuntimeException
      */
-    public static function createFolder($folder)
+    public static function createFolder($folder): void
     {
         try {
             if (!\is_dir($folder)) {
@@ -34,7 +36,7 @@ trait FilesManagement
 
                 file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n", '<br>';
         }
     }
@@ -44,7 +46,7 @@ trait FilesManagement
      * @param $folder
      * @return bool
      */
-    public static function copyFile($file, $folder)
+    public static function copyFile(string $file, string $folder): bool
     {
         return \copy($file, $folder);
     }
@@ -53,7 +55,7 @@ trait FilesManagement
      * @param $src
      * @param $dst
      */
-    public static function recurseCopy($src, $dst)
+    public static function recurseCopy($src, $dst): void
     {
         $dir = \opendir($src);
         //        @mkdir($dst);
@@ -70,6 +72,52 @@ trait FilesManagement
             }
         }
         \closedir($dir);
+    }
+
+    /**
+     * Copy a file, or recursively copy a folder and its contents
+     * @param string $source Source path
+     * @param string $dest   Destination path
+     * @return      bool     Returns true on success, false on failure
+     * @author      Aidan Lister <aidan@php.net>
+     * @version     1.0.1
+     * @link        https://aidanlister.com/2004/04/recursively-copying-directories-in-php/
+     */
+    public static function xcopy($source, $dest)
+    {
+        // Check for symlinks
+        if (\is_link($source)) {
+            return \symlink(\readlink($source), $dest);
+        }
+
+        // Simple copy for a file
+        if (\is_file($source)) {
+            return \copy($source, $dest);
+        }
+
+        // Make destination directory
+        if (!\is_dir($dest)) {
+            if (!\mkdir($dest) && !\is_dir($dest)) {
+                throw new \RuntimeException(\sprintf('Directory "%s" was not created', $dest));
+            }
+        }
+
+        // Loop through the folder
+        $dir = \dir($source);
+        if (@\is_dir($dir)) {
+            while (false !== $entry = $dir->read()) {
+                // Skip pointers
+                if ('.' === $entry || '..' === $entry) {
+                    continue;
+                }
+                // Deep copy directories
+                self::xcopy("$source/$entry", "$dest/$entry");
+            }
+            // Clean up
+            $dir->close();
+        }
+
+        return true;
     }
 
     /**
@@ -156,6 +204,7 @@ trait FilesManagement
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
+
         return \rmdir($src); // remove the directory & return results
     }
 
@@ -196,6 +245,7 @@ trait FilesManagement
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
+
         return \rmdir($src); // remove the directory & return results
     }
 

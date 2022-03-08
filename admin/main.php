@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * tools Module for XOOPS
@@ -11,8 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       XOOPS Project (https://xoops.org)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         tools
+ * @license         https://www.fsf.org/copyleft/gpl.html GNU public license
  * @since           2.00
  * @author          Susheng Yang <ezskyyoung@gmail.com>
  */
@@ -53,18 +52,18 @@ switch ($op) {
             $url      = XOOPS_URL . "/modules/tools/admin/main.php?op=updatecache&step=2&options={$options}";
             $updating = _AM_TOOLS_UPDATING;
             $msg      = <<<EOF
-    <div class="loading" style="text-align:center">
-    <img src="../assets/images/loader.gif">
-    <p>{$updating}</P>
-    </div>
-    <script type="text/javascript" language="javascript">
-    function redirect(url)
-    {
-    location.replace(url);
-    }
-    </script>
-    <script type="text/JavaScript">setTimeout("redirect('{$url}');", 2000);</script>
-EOF;
+                    <div class="loading" style="text-align:center">
+                    <img src="../assets/images/loader.gif">
+                    <p>{$updating}</P>
+                    </div>
+                    <script type="text/javascript" language="javascript">
+                    function redirect(url)
+                    {
+                    location.replace(url);
+                    }
+                    </script>
+                    <script type="text/JavaScript">setTimeout("redirect('{$url}');", 2000);</script>
+                EOF;
 
             echo $msg;
         } elseif (2 == $_REQUEST['step']) {
@@ -93,7 +92,11 @@ EOF;
         break;
 }
 
-function updatecache($cacheDir, $type)
+/**
+ * @param $cacheDir
+ * @param $type
+ */
+function updatecache($cacheDir, $type): void
 {
     $d = dir($cacheDir);
     while (false !== ($entry = $d->read())) {
