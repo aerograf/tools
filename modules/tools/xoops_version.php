@@ -19,12 +19,12 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 $moduleDirName      = basename(__DIR__);
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $modversion                        = [];
 $modversion['version']             = '2.1.0';
 $modversion['module_status']       = 'Beta 1';
-$modversion['release_date']        = '2020/08/10';
+$modversion['release_date']        = '2022/02/20';
 $modversion['name']                = _MI_TOOLS_NAME;
 $modversion['description']         = _MI_TOOLS_DESC;
 $modversion['image']               = 'assets/images/logoModule.png';
@@ -73,21 +73,10 @@ $modversion['helpsection'] = [
 ];
 
 // ------------------- Templates ------------------- //
-/**
- * Templates
- */
-$modversion['templates']   = [];
-$modversion['templates'][] = [
-    'file'        => 'tools_admin_blockscall.tpl',
-    'description' => '',
-];
-$modversion['templates'][] = [
-    'file'        => 'tools_admin_blockscall_new.tpl',
-    'description' => '',
-];
-$modversion['templates'][] = [
-    'file'        => 'tools_admin_blockscall_edit.tpl',
-    'description' => '',
+$modversion['templates'] = [
+    ['file' => 'tools_admin_blockscall.tpl', 'description' => '',],
+    ['file' => 'tools_admin_blockscall_new.tpl', 'description' => '',],
+    ['file' => 'tools_admin_blockscall_edit.tpl', 'description' => '',],
 ];
 
 // ------------------- Blocks ------------------- //
